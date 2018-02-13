@@ -12,8 +12,8 @@ Import-Module -Name VMware.VimAutomation.Core -ErrorAction SilentlyContinue
 #################### All VMs in the same group will be Powered on simultaniously ####################
 $Properties = @{'PriorityGroup1'=   "psc01",`
                                     "psc02",`
-                                    "psc-0",`
-                                    "psc-1"
+                                    "psc-0",` #psc load balancers
+                                    "psc-1"   #psc load balancers
                 'PriorityGroup2'=   "vc01",`
                                     "vc02"
                 'PriorityGroup3'=   "nsx01",`
@@ -110,7 +110,7 @@ Function Start-VMGroup($VMGroup){
                 Start-Sleep -Seconds 10
             }
             If($VM.Guest.ExtensionData.GuestState -eq "running"){
-                Write-Host "VMTools is now running on VM:" $VM.Name -BackgroundColor Blue
+                Write-Host "VMTools is now confirmed running on VM:" $VM.Name -BackgroundColor Blue
             } Else {
                 Write-Host "Timed out while waiting for VMTools to start on VM:" $VM.Name
                 #If the first start up process doesn't work for any VMs they will be entered into a new list to be retried
@@ -170,7 +170,7 @@ Function Stop-VMGroup($VMGroup,[switch]$Force){
                 Start-Sleep -Seconds 10
             }
             If($VM.Guest.ExtensionData.GuestState -eq "NotRunning"){
-                Write-Host "VMTools is now stopped on VM:" $VM.Name -BackgroundColor Blue
+                Write-Host "VMTools is now confirmed stopped on VM:" $VM.Name -BackgroundColor Blue
             } Else {
                 Write-Host "Timed out while waiting for VMTools to stop on VM:" $VM.Name -BackgroundColor Red
                 #If the first shutdown process doesn't work for any VMs they will be entered into a new list to be retried
@@ -200,6 +200,9 @@ Function Stop-VMGroup($VMGroup,[switch]$Force){
 }
 
 #################### Execute each priority group in the order it is to be ran ####################
+
+$TimeTaken = [System.Diagnostics.Stopwatch]::StartNew()
+
 If($PowerOn){
     Start-VMGroup $StartOrder.PriorityGroup1
     Start-VMGroup $StartOrder.PriorityGroup2
@@ -247,3 +250,7 @@ If($PowerOff){
     Stop-VMGroup $StartOrder.PriorityGroup2
     Stop-VMGroup $StartOrder.PriorityGroup1
 }
+
+Write-Host
+Write-Host
+Write-Host "Completed the process in" $TimeTaken.Elapsed -BackgroundColor Black -ForegroundColor Yellow
