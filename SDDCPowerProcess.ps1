@@ -79,6 +79,7 @@ Connect-VIServer $EsxHosts -Credential $Credentials -Force
 Function Start-VMGroup($VMGroup){
     #Start with an empty array that will be populated as VMs are successfully powered on
     $PoweredOnList = @()
+    $shell = new-object -comobject "WScript.Shell"
     ForEach ($VM in $VMGroup){
         $Error.clear()
         Try {
@@ -87,7 +88,8 @@ Function Start-VMGroup($VMGroup){
             #Any errors in the shutdown process will be captured and output
             Write-Host "Failed to start VM: $VM" -BackgroundColor Red
             Write-Host $_.Exception.Message -ForegroundColor Yellow
-            Continue
+            $Pause = $shell.popup("An error has been detected. Would you like to continue?",0,"Continue?",4)
+            If($Pause -eq 7){Break} Else {Continue}
         } Finally {
             #If there were no errors it will be assumed the command to power on the VM was successful
             If(!($Error.Count)){
@@ -121,7 +123,6 @@ Function Start-VMGroup($VMGroup){
     }
     #Ask if you would like the script to retry starting up the VMs.
     If($RetryPowerOnList.Count -gt 0){
-        $shell = new-object -comobject "WScript.Shell"
         #A shell popup will ask if you woul dlike to retry the VMs that failed to power on
         $Retry = $shell.popup("Would you like to try and power on the VMs where VMTools have not yet responded?",0,"Retry?",4)
         #If you answer Yes to retry, you will then be asked if you would like to to force a VM shut down, or a chose a Guest OS shut down
@@ -137,6 +138,7 @@ Function Stop-VMGroup($VMGroup,[switch]$Force){
     #Start with an empty array that will be populated as VMs are successfully powered off
     $PoweredOffList = @()
     $RetryPowerOffList = @()
+    $shell = new-object -comobject "WScript.Shell"
     ForEach ($VM in $VMGroup){
         $Error.clear()
         Try {
@@ -147,7 +149,8 @@ Function Stop-VMGroup($VMGroup,[switch]$Force){
             #Any errors in the shutdown process will be captured and output
             Write-Host "Failed to stop VM: $VM" -BackgroundColor Red
             Write-Host $_.Exception.Message -ForegroundColor Yellow
-            Continue
+            $Pause = $shell.popup("An error has been detected. Would you like to continue?",0,"Continue?",4)
+            If($Pause -eq 7){Break} Else {Continue}
         } Finally {
             #If there were no errors it will be assumed the command to power off or shutdown the VM was successful
             If(!($Error.Count)){
@@ -181,7 +184,6 @@ Function Stop-VMGroup($VMGroup,[switch]$Force){
     }
     #Ask if you would like the script to retry shutting down VMs. Both options are are provided to shut down the Guest OS or force a Power Off
     If($RetryPowerOffList.Count -gt 0){
-        $shell = new-object -comobject "WScript.Shell"
         $Retry = $shell.popup("Would you like to try and power off the failed VM Guest OS again?",0,"Retry?",3)
         #If you answer Yes to retry, you will then be asked if you would like to to force a VM shut down, or a chose a Guest OS shut down
         #If you chose to Cancel the script will exit
