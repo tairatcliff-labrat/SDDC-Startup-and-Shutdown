@@ -1,0 +1,197 @@
+{
+	"Core": {
+		"PSC": [{
+			"Name": "psc01",
+			"URL": "https://psc01.labrat.local/"
+		}, {
+			"Name": "psc02",
+			"URL": "https://psc02.labrat.local/"
+		}],
+		"PSCLoadBalacer": [{
+			"Name": "psc-0",
+			"URL": ""
+		}, {
+			"Name": "psc-1",
+			"URL": "https://psc.labrat.local/"
+		}],
+		"vCenter": [{
+			"Name": "vc01",
+			"URL": "https://vc01.labrat.local/vsphere-client"
+		}, {
+			"Name": "vc02",
+			"URL": "https://vc02.labrat.local/vsphere-client"
+		}],
+		"vUMDownloadService": [{
+			"Name": "",
+			"URL": ""
+		}]
+	},
+	"NSX": {
+		"NSXManager": [{
+			"Name": "nsx01",
+			"URL": "https://nsx01.labrat.local/"
+		}, {
+			"Name": "nsx02",
+			"URL": "https://nsx02.labrat.local/"
+		}],
+		"NSXController": [{
+			"Name": "NSX_Controller_78d21c55-f254-4a5e-a501-326eded463d1",
+			"URL": ""
+		}, {
+			"Name": "NSX_Controller_ca9f2efa-d3f9-4d5d-bed1-46b5390fa38a",
+			"URL": ""
+		}, {
+			"Name": "NSX_Controller_075fa393-caa2-4fe8-b2be-c164c163db0f",
+			"URL": ""
+		}, {
+			"Name": "NSX_Controller_0a24223f-801d-4a75-870d-46c238788195",
+			"URL": ""
+		}, {
+			"Name": "NSX_Controller_32324c0d-425e-4a73-bc05-427296c4a746",
+			"URL": ""
+		}, {
+			"Name": "NSX_Controller_f0ebefa2-49ff-4c24-bfeb-1e10576828b0",
+			"URL": ""
+		}],
+		"NSXEdge": [{
+			"Name": "MGMT-ESG01-0",
+			"URL": ""
+		}, {
+			"Name": "MGMT-ESG02-0",
+			"URL": ""
+		}, {
+			"Name": "COMPUTE-ESG01-0",
+			"URL": ""
+		}, {
+			"Name": "COMPUTE-ESG02-0",
+			"URL": ""
+		}, {
+			"Name": "DLR01-EDGE-0",
+			"URL": ""
+		}, {
+			"Name": "DLR01-EDGE-1",
+			"URL": ""
+		}, {
+			"Name": "edge-9fc6404e-dcb2-4b3f-bd4f-7e368c4d104f-1-UDLR01-MGMT",
+			"URL": ""
+		}, {
+			"Name": "edge-9fc6404e-dcb2-4b3f-bd4f-7e368c4d104f-0-UDLR01-MGMT",
+			"URL": ""
+		}, {
+			"Name": "edge-758cfb8d-3d59-4082-96a3-ce44417930db-1-UDLR01-EDGE",
+			"URL": ""
+		}, {
+			"Name": "edge-758cfb8d-3d59-4082-96a3-ce44417930db-0-UDLR01-EDGE",
+			"URL": ""
+		}, {
+			"Name": "MGMT-LB01-0",
+			"URL": ""
+		}, {
+			"Name": "MGMT-LB01-1",
+			"URL": ""
+		}]
+	},
+	"BCDR": {
+		"vSphereReplication": [{
+			"Name": "",
+			"URL": ""
+		}],
+		"SRM": [{
+			"Name": "",
+			"URL": ""
+		}]
+	},
+	"Database": {
+		"SQL": [{
+			"Name": "sql01",
+			"URL": ""
+		}]
+	},
+	"vRealizeAutomation": {
+		"vRAMaster": [{
+			"Name": "vra01",
+			"URL": "https://vra01.labrat.local/"
+		}],
+		"vRASecondary": [{
+			"Name": "vra02",
+			"URL": "https://vra02.labrat.local/"
+		}],
+		"vRAWebPrimary": [{
+			"Name": "iaas01",
+			"URL": ""
+		}],
+		"vRAWebSecondary": [{
+			"Name": "iaas02",
+			"URL": ""
+		}],
+		"vRAManagerPrimary": [{
+			"Name": "ims01",
+			"URL": ""
+		}],
+		"vRAManagerSecondary": [{
+			"Name": "ims02",
+			"URL": ""
+		}],
+		"vRADEMProxyAgent": [{
+			"Name": "dem01",
+			"URL": ""
+		}, {
+			"Name": "dem02",
+			"URL": ""
+		}, {
+			"Name": "vra-agent01",
+			"URL": ""
+		}, {
+			"Name": "vra-agent02",
+			"URL": ""
+		}],
+		"vRB": [{
+			"Name": "vrb",
+			"URL": "https://vrb.labrat.local/"
+		}],
+		"vRBCollector": [{
+			"Name": "vrb01",
+			"URL": ""
+		}]
+	},
+	"vRealizeOperations": {
+		"vROpsMaster": [{
+			"Name": "vrops01",
+			"URL": "https://vrops01.labrat.local/"
+		}],
+		"vROpsReplica": [{
+			"Name": "vrops02",
+			"URL": "https://vrops02.labrat.local/"
+		}],
+		"vROpsData": [{
+			"Name": "vrops03",
+			"URL": "https://vrops03.labrat.local/"
+		}],
+		"vROpsCollector": [{
+			"Name": "vrops-col-01",
+			"URL": ""
+		}, {
+			"Name": "vrops-col-02",
+			"URL": ""
+		}]
+	},
+	"vRealizeLogInsight": {
+		"vRLIMaster": [{
+			"Name": "vrli01",
+			"URL": ""
+		}],
+		"vRLISecondaries": [{
+			"Name": "vrli02",
+			"URL": ""
+		}, {
+			"Name": "vrli03",
+			"URL": "https://vrli.labrat.local/"
+		}]
+	},
+	"DataProtection": {
+		"vDP": [{
+			"Name": "vdp",
+			"URL": ""
+		}]
+	}
+}
